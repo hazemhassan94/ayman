@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>متجر الإطارات - حلول إطارات متميزة</title>
+    <title>متجر الأناقة السعودية - أزياء راقية</title>
     <style>
         * {
             margin: 0;
@@ -12,16 +12,16 @@
         }
 
         :root {
-            --primary: #ff6b35;
-            --secondary: #004e89;
+            --primary: #d4af37;
+            --secondary: #1a472a;
             --dark: #1a1a2e;
             --light: #f5f5f5;
-            --accent: #ffd700;
+            --accent: #c19a6b;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1a472a 0%, #2d5a3d 100%);
             min-height: 100vh;
             overflow-x: hidden;
         }
@@ -69,6 +69,24 @@
             background-clip: text;
         }
 
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
         .cart-icon {
             position: relative;
             color: white;
@@ -86,7 +104,7 @@
             top: -8px;
             left: -8px;
             background: var(--primary);
-            color: white;
+            color: var(--dark);
             border-radius: 50%;
             width: 22px;
             height: 22px;
@@ -126,8 +144,8 @@
             opacity: 0.9;
         }
 
-        /* Tire Selector */
-        .tire-selector {
+        /* Category Selector */
+        .category-section {
             background: white;
             border-radius: 20px;
             padding: 3rem;
@@ -135,66 +153,49 @@
             margin-bottom: 2rem;
         }
 
-        .tire-selector h2 {
+        .category-section h2 {
             color: var(--secondary);
             margin-bottom: 2rem;
             font-size: 2rem;
             text-align: center;
         }
 
-        .selector-grid {
+        .categories-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
-            margin-bottom: 2rem;
         }
 
-        .selector-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .selector-group label {
-            font-weight: 600;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
-        }
-
-        .selector-group select {
-            padding: 1rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            background: white;
-        }
-
-        .selector-group select:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
-        }
-
-        .search-btn {
-            background: linear-gradient(135deg, var(--primary), #ff8c5a);
+        .category-card {
+            background: linear-gradient(135deg, var(--secondary), #2d5a3d);
             color: white;
-            border: none;
-            padding: 1.2rem 3rem;
-            font-size: 1.2rem;
-            border-radius: 12px;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
             cursor: pointer;
             transition: all 0.3s;
-            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
-            font-weight: bold;
-            display: block;
-            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
-        .search-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.4);
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        .category-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .category-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .category-desc {
+            font-size: 1rem;
+            opacity: 0.9;
         }
 
         /* Products Grid */
@@ -208,7 +209,7 @@
         .product-card {
             background: white;
             border-radius: 20px;
-            padding: 2rem;
+            overflow: hidden;
             box-shadow: 0 10px 40px rgba(0,0,0,0.1);
             transition: all 0.3s;
             cursor: pointer;
@@ -221,14 +222,26 @@
 
         .product-image {
             width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 5rem;
-            margin-bottom: 1.5rem;
+            height: 350px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary);
+            color: var(--dark);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .product-info {
+            padding: 1.5rem;
         }
 
         .product-brand {
@@ -241,33 +254,57 @@
 
         .product-name {
             color: var(--dark);
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: bold;
             margin: 0.5rem 0;
         }
 
-        .product-specs {
+        .product-desc {
             color: #666;
             font-size: 0.95rem;
             margin: 0.5rem 0;
+            line-height: 1.5;
         }
 
         .product-rating {
-            color: var(--accent);
+            color: var(--primary);
             margin: 0.5rem 0;
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
 
         .product-price {
             color: var(--secondary);
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: bold;
             margin: 1rem 0;
         }
 
+        .size-selector {
+            display: flex;
+            gap: 0.5rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+
+        .size-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid #e0e0e0;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .size-btn:hover, .size-btn.selected {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: var(--dark);
+        }
+
         .add-to-cart-btn {
             width: 100%;
-            background: linear-gradient(135deg, var(--secondary), #0077b6);
+            background: linear-gradient(135deg, var(--secondary), #2d5a3d);
             color: white;
             border: none;
             padding: 1rem;
@@ -280,7 +317,7 @@
 
         .add-to-cart-btn:hover {
             transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(0, 78, 137, 0.3);
+            box-shadow: 0 10px 30px rgba(26, 71, 42, 0.3);
         }
 
         /* Cart Page */
@@ -293,7 +330,7 @@
 
         .cart-item {
             display: grid;
-            grid-template-columns: 100px 1fr auto;
+            grid-template-columns: 120px 1fr auto;
             gap: 2rem;
             padding: 2rem;
             border-bottom: 2px solid #f0f0f0;
@@ -301,14 +338,11 @@
         }
 
         .cart-item-image {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            width: 120px;
+            height: 150px;
+            background-size: cover;
+            background-position: center;
             border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
         }
 
         .cart-item-info h3 {
@@ -331,7 +365,7 @@
 
         .qty-btn {
             background: var(--primary);
-            color: white;
+            color: var(--dark);
             border: none;
             width: 35px;
             height: 35px;
@@ -391,8 +425,8 @@
 
         .checkout-btn {
             width: 100%;
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: var(--dark);
             border: none;
             padding: 1.5rem;
             font-size: 1.3rem;
@@ -405,7 +439,7 @@
 
         .checkout-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 15px 40px rgba(16, 185, 129, 0.4);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4);
         }
 
         /* Checkout Page */
@@ -431,7 +465,8 @@
         }
 
         .form-group input,
-        .form-group textarea {
+        .form-group textarea,
+        .form-group select {
             padding: 1rem;
             border: 2px solid #e0e0e0;
             border-radius: 12px;
@@ -440,10 +475,11 @@
         }
 
         .form-group input:focus,
-        .form-group textarea:focus {
+        .form-group textarea:focus,
+        .form-group select:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
         }
 
         .payment-methods {
@@ -464,12 +500,12 @@
 
         .payment-method:hover {
             border-color: var(--primary);
-            background: rgba(255, 107, 53, 0.05);
+            background: rgba(212, 175, 55, 0.05);
         }
 
         .payment-method.selected {
             border-color: var(--primary);
-            background: rgba(255, 107, 53, 0.1);
+            background: rgba(212, 175, 55, 0.1);
         }
 
         .back-btn {
@@ -501,29 +537,6 @@
             opacity: 0.5;
         }
 
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .selector-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .checkout-form {
-                grid-template-columns: 1fr;
-            }
-
-            .cart-item {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-        }
-
         .success-message {
             background: white;
             border-radius: 20px;
@@ -549,12 +562,43 @@
             font-size: 1.2rem;
             margin-bottom: 2rem;
         }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .checkout-form {
+                grid-template-columns: 1fr;
+            }
+
+            .cart-item {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
     <header>
         <nav>
-            <div class="logo">🚗 متجر الإطارات</div>
+            <div class="logo">👔 الأناقة السعودية</div>
+            <div class="nav-links">
+                <a class="nav-link" onclick="showPage('page1')">الرئيسية</a>
+                <a class="nav-link" onclick="showPage('page2')">المنتجات</a>
+            </div>
             <div class="cart-icon" onclick="showCart()">
                 🛒
                 <span class="cart-count" id="cartCount">0</span>
@@ -562,63 +606,38 @@
         </nav>
     </header>
 
-    <!-- صفحة 1: اختيار الإطارات -->
+    <!-- صفحة 1: الفئات -->
     <div id="page1" class="page active">
         <div class="container">
             <div class="hero">
-                <h1>ابحث عن الإطارات المثالية</h1>
-                <p>إطارات عالية الجودة من أفضل العلامات التجارية العالمية</p>
+                <h1>مرحباً بك في متجر الأناقة السعودية</h1>
+                <p>أرقى الأزياء الرجالية والنسائية بأفضل الأسعار</p>
             </div>
 
-            <div class="tire-selector">
-                <h2>اختر مقاس إطار سيارتك</h2>
-                <div class="selector-grid">
-                    <div class="selector-group">
-                        <label for="width">العرض</label>
-                        <select id="width">
-                            <option value="">اختر العرض</option>
-                            <option value="195">195</option>
-                            <option value="205">205</option>
-                            <option value="215">215</option>
-                            <option value="225">225</option>
-                            <option value="235">235</option>
-                            <option value="245">245</option>
-                            <option value="255">255</option>
-                            <option value="265">265</option>
-                            <option value="275">275</option>
-                            <option value="285">285</option>
-                        </select>
+            <div class="category-section">
+                <h2>تسوق حسب الفئة</h2>
+                <div class="categories-grid">
+                    <div class="category-card" onclick="showProducts('men')">
+                        <div class="category-icon">👔</div>
+                        <div class="category-name">أزياء رجالية</div>
+                        <div class="category-desc">ثياب، بدلات، وملابس كاجوال</div>
                     </div>
-
-                    <div class="selector-group">
-                        <label for="aspectRatio">نسبة الارتفاع</label>
-                        <select id="aspectRatio">
-                            <option value="">اختر النسبة</option>
-                            <option value="35">35</option>
-                            <option value="40">40</option>
-                            <option value="45">45</option>
-                            <option value="50">50</option>
-                            <option value="55">55</option>
-                            <option value="60">60</option>
-                            <option value="65">65</option>
-                            <option value="70">70</option>
-                        </select>
+                    <div class="category-card" onclick="showProducts('women')">
+                        <div class="category-icon">👗</div>
+                        <div class="category-name">أزياء نسائية</div>
+                        <div class="category-desc">عبايات، فساتين، وإكسسوارات</div>
                     </div>
-
-                    <div class="selector-group">
-                        <label for="diameter">قطر الجنط</label>
-                        <select id="diameter">
-                            <option value="">اختر القطر</option>
-                            <option value="15">15 بوصة</option>
-                            <option value="16">16 بوصة</option>
-                            <option value="17">17 بوصة</option>
-                            <option value="18">18 بوصة</option>
-                            <option value="19">19 بوصة</option>
-                            <option value="20">20 بوصة</option>
-                        </select>
+                    <div class="category-card" onclick="showProducts('kids')">
+                        <div class="category-icon">👶</div>
+                        <div class="category-name">ملابس أطفال</div>
+                        <div class="category-desc">أزياء عصرية للأطفال</div>
+                    </div>
+                    <div class="category-card" onclick="showProducts('sports')">
+                        <div class="category-icon">🏃</div>
+                        <div class="category-name">ملابس رياضية</div>
+                        <div class="category-desc">ملابس للياقة والرياضة</div>
                     </div>
                 </div>
-                <button class="search-btn" onclick="searchTires()">البحث عن الإطارات</button>
             </div>
         </div>
     </div>
@@ -627,11 +646,11 @@
     <div id="page2" class="page">
         <div class="container">
             <div class="hero">
-                <h1>الإطارات المتاحة</h1>
-                <p id="selectedSize"></p>
+                <h1 id="categoryTitle">جميع المنتجات</h1>
+                <p id="categorySubtitle">اختر من مجموعتنا المتنوعة</p>
             </div>
             
-            <button class="back-btn" onclick="showPage('page1')">→ العودة للاختيار</button>
+            <button class="back-btn" onclick="showPage('page1')">← العودة للفئات</button>
             
             <div class="products-grid" id="productsGrid"></div>
         </div>
@@ -642,10 +661,10 @@
         <div class="container">
             <div class="hero">
                 <h1>سلة التسوق</h1>
-                <p>راجع المنتجات المختارة</p>
+                <p>راجع مشترياتك قبل الإتمام</p>
             </div>
             
-            <button class="back-btn" onclick="showPage('page2')">→ مواصلة التسوق</button>
+            <button class="back-btn" onclick="showPage('page2')">← مواصلة التسوق</button>
             
             <div class="cart-container" id="cartContainer"></div>
         </div>
@@ -656,10 +675,10 @@
         <div class="container">
             <div class="hero">
                 <h1>إتمام الطلب</h1>
-                <p>أكمل عملية الشراء</p>
+                <p>أكمل بياناتك لإتمام عملية الشراء</p>
             </div>
             
-            <button class="back-btn" onclick="showCart()">→ العودة للسلة</button>
+            <button class="back-btn" onclick="showCart()">← العودة للسلة</button>
             
             <div class="cart-container">
                 <h2 style="color: var(--secondary); margin-bottom: 2rem;">معلومات الشحن</h2>
@@ -677,20 +696,26 @@
                         <input type="email" required>
                     </div>
                     <div class="form-group full-width">
-                        <label>رقم الهاتف *</label>
-                        <input type="tel" required>
+                        <label>رقم الجوال *</label>
+                        <input type="tel" required placeholder="05xxxxxxxx">
                     </div>
                     <div class="form-group full-width">
-                        <label>العنوان *</label>
-                        <input type="text" required>
-                    </div>
-                    <div class="form-group">
                         <label>المدينة *</label>
-                        <input type="text" required>
+                        <select required>
+                            <option value="">اختر المدينة</option>
+                            <option value="riyadh">الرياض</option>
+                            <option value="jeddah">جدة</option>
+                            <option value="dammam">الدمام</option>
+                            <option value="mecca">مكة المكرمة</option>
+                            <option value="medina">المدينة المنورة</option>
+                            <option value="taif">الطائف</option>
+                            <option value="tabuk">تبوك</option>
+                            <option value="khobar">الخبر</option>
+                        </select>
                     </div>
-                    <div class="form-group">
-                        <label>الرمز البريدي *</label>
-                        <input type="text" required>
+                    <div class="form-group full-width">
+                        <label>العنوان بالتفصيل *</label>
+                        <textarea required rows="3" placeholder="الحي، الشارع، رقم المبنى"></textarea>
                     </div>
                     
                     <div class="form-group full-width">
@@ -703,6 +728,9 @@
                                 💰<br>الدفع عند الاستلام
                             </div>
                             <div class="payment-method" onclick="selectPayment(this)">
+                                📱<br>مدى
+                            </div>
+                            <div class="payment-method" onclick="selectPayment(this)">
                                 🏦<br>تحويل بنكي
                             </div>
                         </div>
@@ -712,19 +740,19 @@
                         <div class="cart-summary">
                             <div class="summary-row">
                                 <span>المجموع الفرعي:</span>
-                                <span id="checkoutSubtotal">0.00 جنيه</span>
+                                <span id="checkoutSubtotal">0.00 ريال</span>
                             </div>
                             <div class="summary-row">
                                 <span>الشحن:</span>
-                                <span>100 جنيه</span>
+                                <span>مجاني</span>
                             </div>
                             <div class="summary-row">
-                                <span>الضريبة (14%):</span>
-                                <span id="checkoutTax">0.00 جنيه</span>
+                                <span>الضريبة (15%):</span>
+                                <span id="checkoutTax">0.00 ريال</span>
                             </div>
                             <div class="summary-row total">
                                 <span>الإجمالي:</span>
-                                <span id="checkoutTotal">0.00 جنيه</span>
+                                <span id="checkoutTotal">0.00 ريال</span>
                             </div>
                         </div>
                     </div>
@@ -743,106 +771,79 @@
             <div class="success-message">
                 <div class="success-icon">✅</div>
                 <h2>تم تأكيد طلبك بنجاح!</h2>
-                <p>شكراً لك على الشراء. تم تأكيد طلبك.</p>
+                <p>شكراً لك على الشراء من متجر الأناقة السعودية</p>
                 <p><strong>رقم الطلب: <span id="orderNumber"></span></strong></p>
-                <p>سنرسل لك تحديثات الشحن عبر البريد الإلكتروني.</p>
-                <button class="search-btn" onclick="resetShop()">تسوق المزيد من الإطارات</button>
+                <p>سنرسل لك تحديثات الشحن عبر البريد الإلكتروني والجوال</p>
+                <p>التوصيل المتوقع: 2-3 أيام عمل</p>
+                <button class="checkout-btn" onclick="resetShop()">تسوق المزيد</button>
             </div>
         </div>
     </div>
 
     <script>
-        const products = [
-            { id: 1, brand: 'ميشلان', name: 'بايلوت سبورت 4S', price: 4500, rating: '★★★★★', specs: 'صيفي رياضي' },
-            { id: 2, brand: 'جوديير', name: 'إيجل سبورت', price: 3200, rating: '★★★★☆', specs: 'لجميع الفصول' },
-            { id: 3, brand: 'بريدجستون', name: 'تورانزا كوايت تراك', price: 3800, rating: '★★★★★', specs: 'سياحي لجميع الفصول' },
-            { id: 4, brand: 'كونتيننتال', name: 'إكستريم كونتاكت سبورت', price: 4100, rating: '★★★★★', specs: 'أداء فائق' },
-            { id: 5, brand: 'بيريللي', name: 'بي زيرو', price: 4800, rating: '★★★★★', specs: 'صيفي رياضي' },
-            { id: 6, brand: 'بي إف جودريتش', name: 'أول تيرين KO2', price: 4200, rating: '★★★★☆', specs: 'لجميع التضاريس' },
-            { id: 7, brand: 'فالكن', name: 'أزينيس RT615K+', price: 3400, rating: '★★★★☆', specs: 'أداء عالي' },
-            { id: 8, brand: 'يوكوهاما', name: 'أدفان سبورت V105', price: 4000, rating: '★★★★☆', specs: 'أداء فائق' },
-        ];
-
-        let cart = [];
-        let selectedSize = '';
-
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            document.getElementById(pageId).classList.add('active');
-            window.scrollTo(0, 0);
-        }
-
-        function searchTires() {
-            const width = document.getElementById('width').value;
-            const ratio = document.getElementById('aspectRatio').value;
-            const diameter = document.getElementById('diameter').value;
-
-            if (!width || !ratio || !diameter) {
-                alert('يرجى اختيار جميع مواصفات الإطار');
-                return;
-            }
-
-            selectedSize = `${width}/${ratio}R${diameter}`;
-            document.getElementById('selectedSize').textContent = `عرض النتائج لمقاس: ${selectedSize}`;
-            
-            displayProducts();
-            showPage('page2');
-        }
-
-        function displayProducts() {
-            const grid = document.getElementById('productsGrid');
-            grid.innerHTML = products.map(product => `
-                <div class="product-card">
-                    <div class="product-image">🏁</div>
-                    <div class="product-brand">${product.brand}</div>
-                    <div class="product-name">${product.name}</div>
-                    <div class="product-specs">📏 ${selectedSize} | ${product.specs}</div>
-                    <div class="product-rating">${product.rating}</div>
-                    <div class="product-price">${product.price} جنيه</div>
-                    <button class="add-to-cart-btn" onclick="addToCart(${product.id})">أضف إلى السلة</button>
-                </div>
-            `).join('');
-        }
-
-        function addToCart(productId) {
-            const product = products.find(p => p.id === productId);
-            const existingItem = cart.find(item => item.id === productId);
-            
-            if (existingItem) {
-                existingItem.quantity++;
-            } else {
-                cart.push({ ...product, quantity: 1, size: selectedSize });
-            }
-            
-            updateCartCount();
-            alert('تم إضافة المنتج إلى السلة!');
-        }
-
-        function updateCartCount() {
-            const count = cart.reduce((sum, item) => sum + item.quantity, 0);
-            document.getElementById('cartCount').textContent = count;
-        }
-
-        function showCart() {
-            if (cart.length === 0) {
-                document.getElementById('cartContainer').innerHTML = `
-                    <div class="empty-cart">
-                        <div class="empty-cart-icon">🛒</div>
-                        <h2>سلة التسوق فارغة</h2>
-                        <p>أضف بعض الإطارات للبدء!</p>
-                        <button class="search-btn" onclick="showPage('page1')" style="margin-top: 2rem;">تصفح الإطارات</button>
-                    </div>
-                `;
-            } else {
-                displayCart();
-            }
-            showPage('page3');
-        }
-
-        function displayCart() {
-                const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-                const tax = subtotal * 0.14;
-                const shipping = 100;
-            }
+        const products = {
+            men: [
+                {
+                    id: 1,
+                    brand: 'الأناقة الفاخرة',
+                    name: 'ثوب سعودي أبيض فاخر',
+                    price: 299,
+                    rating: '★★★★★',
+                    desc: 'ثوب سعودي من قماش قطني فاخر، مريح وأنيق للاستخدام اليومي',
+                    image: 'https://images.unsplash.com/photo-1622519407650-3df9883f76e6?w=500',
+                    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+                    badge: 'الأكثر مبيعاً'
+                },
+                {
+                    id: 2,
+                    brand: 'التقليد الأصيل',
+                    name: 'شماغ أحمر فاخر',
+                    price: 159,
+                    rating: '★★★★★',
+                    desc: 'شماغ قطني أصلي بجودة عالية، مناسب لجميع المناسبات',
+                    image: 'https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?w=500',
+                    sizes: ['قياس واحد'],
+                    badge: 'جديد'
+                },
+                {
+                    id: 3,
+                    brand: 'الأناقة العصرية',
+                    name: 'بدلة رسمية كاملة',
+                    price: 899,
+                    rating: '★★★★★',
+                    desc: 'بدلة رسمية من الصوف الإيطالي، مثالية للمناسبات الخاصة',
+                    image: 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=500',
+                    sizes: ['46', '48', '50', '52', '54'],
+                    badge: 'تخفيض 30%'
+                },
+                {
+                    id: 4,
+                    brand: 'الراحة الأنيقة',
+                    name: 'قميص كاجوال أزرق',
+                    price: 179,
+                    rating: '★★★★☆',
+                    desc: 'قميص كاجوال من القطن المريح، مثالي للإطلالات اليومية',
+                    image: 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=500',
+                    sizes: ['S', 'M', 'L', 'XL'],
+                    badge: ''
+                }
+            ],
+            women: [
+                {
+                    id: 5,
+                    brand: 'الأناقة العربية',
+                    name: 'عباية سوداء مطرزة',
+                    price: 499,
+                    rating: '★★★★★',
+                    desc: 'عباية فاخرة مع تطريز يدوي راقي، مثالية للمناسبات الخاصة',
+                    image: 'https://images.unsplash.com/photo-1583391733956-6c78276477e5?w=500',
+                    sizes: ['S', 'M', 'L', 'XL'],
+                    badge: 'الأكثر مبيعاً'
+                },
+                {
+                    id: 6,
+                    brand: 'الموضة العصرية',
+                    name: 'فستان سهرة طويل',
+                    price: 699,
+                    rating: '★★★★★',
+                    desc: 'فستان سهرة أنيق من الشيفون الفاخر
